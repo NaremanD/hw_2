@@ -6,7 +6,7 @@ average_change, revenue, date = [], [], []
 Greatest_increase = 0
 Greatest_decrease = 0
 csvpath=os.path.join('../Resources/budget_data.csv')
-output = os.path.join('../Resources/Result.txt')
+output_results = os.path.join('../Resources/Result.txt')
 with open (csvpath,"r") as Budget:
     csv_reader=csv.reader(Budget)
     header=next(csv_reader)
@@ -18,9 +18,7 @@ with open (csvpath,"r") as Budget:
         date.append(row[0])
     for i in range(total_months - 1):
         average_diff = int(revenue[i+1]) - int(revenue[i]) 
-        average_change.append(average_diff)
-
-        
+        average_change.append(average_diff)        
        
         if Greatest_increase < int(average_change[i]):
             Greatest_increase = int(average_change[i])
@@ -37,7 +35,7 @@ with open (csvpath,"r") as Budget:
     print("the Greatest increase in profit: "+ max_date + " " + str(Greatest_increase))
     print("the Greatest descrease in profit: " + min_date + " " + str(Greatest_decrease))
 
-    with open(output, "w") as out_file:
+    with open(output_results, "w") as out_file:
        out_file.write("Financial Analysis"+'\n')
        out_file.write('--------------------'+'\n')
        out_file.write(f"Total: ${total_sum}"+'\n')
